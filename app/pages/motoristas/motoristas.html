@@ -85,12 +85,18 @@
 									 data-placement="left">
 									<i class="btn btn-default btn-circle"><i class="fa fa-list"></i></i>
 									</a>
-									<a href="" 
-									   ng-click="vm.deleteMotorista( motorista.$id )"
-									   class="center"
-									   data-rel="tooltip"
-									   title="Excluir"
-									   data-placement="left">
+									<a href=""
+									     sweetalert
+										 sweet-options="{{sweet.option}}" 
+										 sweet-confirm-option="{{sweet.confirm}}" 
+										 sweet-cancel-option="{{sweet.cancel}}"  
+										 name="login-submit" 
+										 sweet-on-cancel="checkCancel()" 
+										 sweet-on-confirm="checkConfirm( motorista.$id )"
+										 class="center"
+										 data-rel="tooltip"
+										 title="Excluir"
+										 data-placement="left">
 									<i class="btn btn-default btn-circle"><i class="fa fa-trash"></i></i>
 									</a>
 								</td>

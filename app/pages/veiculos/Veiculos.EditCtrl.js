@@ -3,9 +3,9 @@
         .module('LetsVAN.veiculos')
         .controller('VeiculosEditCtrl', VeiculosEditCtrl);
 
-        VeiculosEditCtrl.$inject = ['currentAuth', 'Veiculos', '$state', 'perfilVeiculo', '$stateParams'];
+        VeiculosEditCtrl.$inject = ['currentAuth', 'Veiculos', '$state', 'perfilVeiculo', '$stateParams', 'ngNotify', 'toastr'];
 
-        function VeiculosEditCtrl( currentAuth,Veiculos,$state,perfilVeiculo,$stateParams ) {
+        function VeiculosEditCtrl( currentAuth,Veiculos,$state,perfilVeiculo,$stateParams,ngNotify,toastr ) {
 
         	let vm = this;       	
 
@@ -27,8 +27,16 @@
                     console.log( JSON.stringify( vm.customer, null, 2 ));
                     Veiculos.updateVeiculo( UID,id,vm.customer ).then(()=>{
                     	$state.go('veiculos');
+                       toastr.success('Veículo', 'Alterado com sucesso!'); 
                     },(error)=>{
-                    	alert('Erro: ', error)
+                    	 ngNotify.set('Error: ' + error, {
+                            position: 'top',
+                            sticky: false,
+                            type: 'error',
+                            theme: 'pastel',
+                            duration:3000,
+                            button: true
+                        });
                     });
            	 }
 

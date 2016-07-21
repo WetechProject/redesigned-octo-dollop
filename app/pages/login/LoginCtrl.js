@@ -6,9 +6,9 @@
         .module('LetsVAN.login')
         .controller('LoginCtrl', LoginCtrl);
 
-        LoginCtrl.$inject = ['$state','Auth'];
+        LoginCtrl.$inject = ['$state','Auth','ngNotify','toastr'];
 
-        function LoginCtrl($state,Auth) {
+        function LoginCtrl($state,Auth,ngNotify,toastr) {
         	
         	let vm = this;
         	//Function
@@ -23,10 +23,19 @@
         	 function login() {
         		console.log( JSON.stringify( vm.formLogin, null, 2 ));
                 Auth.$signInWithEmailAndPassword(vm.formLogin.email, vm.formLogin.senha).then(function(authData) {
-                        console.log('Logged in as: ', authData.uid);
+                        console.log('Logged in as: ', authData.uid);                        
+                        toastr.info('LET´s VAN', 'Seja BEM-VINDO');
                         $state.go('dashboard');
                     }).catch(function(error) {
                         console.log(error);
+                        ngNotify.set('Error: ' + error, {
+                            position: 'top',
+                            sticky: false,
+                            type: 'error',
+                            theme: 'pastel',
+                            duration:3000,
+                            button: true
+                        });
                 });
         	}
 
