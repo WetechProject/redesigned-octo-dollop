@@ -7,9 +7,9 @@
         .module('LetsVAN.motoristas')
         .controller('MotoriastasEditCtrl', MotoriastasEditCtrl);
 
-        MotoriastasEditCtrl.$inject = ['currentAuth', 'Motoristas', '$state', 'perfilMotorista', '$stateParams'];
+        MotoriastasEditCtrl.$inject = ['currentAuth', 'Motoristas', '$state', 'perfilMotorista', '$stateParams', 'ngNotify','toastr'];
 
-        function MotoriastasEditCtrl( currentAuth,Motoristas,$state,perfilMotorista,$stateParams ){
+        function MotoriastasEditCtrl( currentAuth,Motoristas,$state,perfilMotorista,$stateParams,ngNotify,toastr ){
 
         	let vm = this;       	
 
@@ -30,9 +30,17 @@
            	 	    console.log( 'Data were successfully sent to the server! EDIT' );
                     console.log( JSON.stringify( vm.customer, null, 2 ));
                     Motoristas.updateMotorista( UID,id,vm.customer ).then(()=>{
+                      toastr.success('Motorista', 'Alterado com sucesso!');
                     	$state.go('motoristas');
                     },(error)=>{
-                    	alert('Erro: ', error)
+                    	 ngNotify.set('Error: ' + error, {
+                            position: 'top',
+                            sticky: false,
+                            type: 'error',
+                            theme: 'pastel',
+                            duration:3000,
+                            button: true
+                        });
                     });
            	 }
 

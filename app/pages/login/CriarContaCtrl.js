@@ -6,9 +6,9 @@
         .module('LetsVAN.login')
         .controller('CriarConta', CriarConta);
 
-        CriarConta.$inject = ['$state', 'Auth', '$timeout'];
+        CriarConta.$inject = ['$state', 'Auth', '$timeout', 'ngNotify','toastr'];
 
-        function CriarConta($state, Auth, $timeout) {
+        function CriarConta($state, Auth, $timeout, ngNotify,toastr) {
 
         	let vm = this;
 
@@ -29,11 +29,19 @@
         	function criarConta() {
 		        Auth.$createUserWithEmailAndPassword(vm.formCreate.email, vm.formCreate.senha)
 		        	.then(function(userData) {
-		        		console.log('User ' + userData.uid + ' created successfully.');
-		        		 vm.entrarSistema();
+		        		console.log('User ' + userData.uid + ' created successfully.');                        
+                        toastr.success('Seja BEM-VINDO', 'Conta Criada com sucesso');		        		 
+                        vm.entrarSistema();
 		     		 }).catch(function(error) {			        	
 		     		 	console.log(error);
-		        		//authCtrl.error = error;
+		        		ngNotify.set('Error: ' + error, {
+                            position: 'top',
+                            sticky: false,
+                            type: 'error',
+                            theme: 'pastel',
+                            duration:3000,
+                            button: true
+                        })
 		      	});
         	};
 
@@ -45,6 +53,14 @@
 			        	$state.go('dashboard');
 			      	}).catch(function(error) {
 			        	console.log(error);
+                        ngNotify.set('Error: ' + error, {
+                            position: 'top',
+                            sticky: false,
+                            type: 'error',
+                            theme: 'pitchy',
+                            duration:3000,
+                            button: true
+                        })
       			});
         	};
 

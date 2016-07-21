@@ -10,7 +10,7 @@
 									title="Novo" 
 									data-placement="left">
 									Novo</a>
-								</div>
+								</div>								
 								<div class="col-sm-7">
 									<input name="criterio"
 									 type="text" 
@@ -86,12 +86,18 @@
 													data-placement="left">
 													<i class="btn btn-default btn-circle"><i class="fa fa-list"></i></i>
 													</a>
-													<a href="" 
-													   ng-click="vm.deleteVeiculo( veiculo.$id )"
-													   class="center"
-													   data-rel="tooltip"
-													   title="Excluir"
-													   data-placement="left">
+													<a href=""
+														 sweetalert
+														 sweet-options="{{sweet.option}}" 
+														 sweet-confirm-option="{{sweet.confirm}}" 
+														 sweet-cancel-option="{{sweet.cancel}}"  
+														 name="login-submit" 
+														 sweet-on-cancel="checkCancel()" 
+														 sweet-on-confirm="checkConfirm( veiculo.$id )"
+														 class="center"
+														 data-rel="tooltip"
+														 title="Excluir"
+														 data-placement="left">
 													<i class="btn btn-default btn-circle"><i class="fa fa-trash"></i></i>
 													</a>
 												</td>

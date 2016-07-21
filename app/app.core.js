@@ -10,6 +10,10 @@
     	'angular.viacep',
     	'ui.bootstrap',
         'firebase',
-        'angular-md5'
+        'angular-md5',
+        'ngNotify',
+        'ng-sweet-alert',
+        'ngAnimate',
+        'toastr'
     ]);
 })();
