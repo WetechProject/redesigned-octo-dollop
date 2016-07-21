@@ -1,0 +1,49 @@
+
+<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="form-group">						
+							<form novalidate 
+								  name="customerForm"
+								  ng-submit="vm.atualizarPerfil()">								
+								<div class="row">									
+									<div class="col-lg-12">
+										<div class="container">
+	  										<h1>Seja Bem-Vindo |  Lets VAN</h1>
+	  										<h3>Atualize os seus dados:</h3>
+	  										<br><br><br>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group ">
+											<label for="input_nome">Nome*</label>
+											<input name="nome" 
+											type="text" 
+											ng-maxlength="100" 
+											ng-minlength="10" 
+											id="input_nome" 
+											ng-model="vm.profile.displayName"
+											class="form-control" 
+											required>
+											<div class="error-messages" ng-if="vm.interacted( customerForm.nome )" ng-messages="customerForm.nome.$error">
+												<div ng-message="required">Coloque o nome!</div>
+												<div ng-message="minlength">Erro o nome tem que ter 10 caracteres!</div>
+												<div ng-message="maxlength">Erro o nome tem que ter só 100 caracteres!</div>
+											</div>
+										</div>										
+									</div>
+								</div>
+								<div class="panel-footer">
+									 <button type="submit"
+									  		 ng-disabled="customerForm.$invalid"
+									         class="btn btn-primary" >Atualizar
+								     </button>
+								</div>
+							</form>
+						</div>
+					</div>    
+				</div>
+			</div>
+		

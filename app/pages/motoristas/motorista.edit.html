@@ -1,0 +1,313 @@
+
+<div class="col-lg-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<div class="form-group">
+						
+							<form novalidate 
+								  name="customerForm"
+								  ng-submit="vm.save()">
+								
+								<div class="row">
+									<div class="col-lg-3">
+										<div class="form-group ">
+											<label for="input_numeroLincenca">N° Licença*</label>
+											<input type="text" 
+												   name="numeroLincenca"
+												   ng-minlength="5"
+												   ng-maxlength="45"
+												   ng-model="vm.customer.numeroLincenca"
+												   class="form-control"
+												   id="input_numeroLincenca" 
+												   required />
+											<div class="error-messages" ng-if="vm.interacted( customerForm.numeroLincenca )" ng-messages="customerForm.numeroLincenca.$error">
+												<div ng-message="required">Coloque o n° da licença!</div>
+												<div ng-message="minlength">Erro o n° tem que ter 5 caracteres!</div>
+												<div ng-message="maxlength">Erro o n° tem que ter só 45 caracteres!</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-7">
+										<div class="form-group ">
+											<label for="input_nome">Nome*</label>
+											<input name="nome" 
+											type="text" 
+											ng-maxlength="100" 
+											ng-minlength="10" 
+											id="input_nome" 
+											ng-model="vm.customer.nome"
+											class="form-control" 
+											required>
+											<div class="error-messages" ng-if="vm.interacted( customerForm.nome )" ng-messages="customerForm.nome.$error">
+												<div ng-message="required">Coloque o nome!</div>
+												<div ng-message="minlength">Erro o nome tem que ter 10 caracteres!</div>
+												<div ng-message="maxlength">Erro o nome tem que ter só 100 caracteres!</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-3">
+										<div class="form-group ">
+											<label for="input_CNH">CNH*</label>
+											<input name="CNH" 
+											type="number" 
+											ng-maxlength="60" 
+											ng-minlength="5"
+											id="input_CNH" 
+											ng-model="vm.customer.CNH"
+											class="form-control" 
+											required>
+											<div class="error-messages" ng-if="vm.interacted( customerForm.CNH )" ng-messages="customerForm.CNH.$error">
+												<div ng-message="required">Coloque o nº da CNH!</div>
+												<div ng-message="minlength">Erro o nº tem que ter 5 caracteres!</div>
+												<div ng-message="maxlength">Erro o nº tem que ter só 60 caracteres!</div>
+											</div>
+										</div>										
+									</div>
+									<div class="col-lg-2">
+										<div class="form-group ">
+											<label for="input_data_CNH">Dt Validade CNH*</label>
+											<input name="data_CNH" 
+											type="text"
+											ng-model="vm.customer.data_CNH"
+											id="input_data_CNH" 
+											class="form-control" 
+											mask="39/19/9999"
+											required>
+											<div class="error-messages" ng-if="vm.interacted( customerForm.data_CNH )" ng-messages="customerForm.data_CNH.$error">
+												<div ng-message="required">Coloque a data da CNH!</div>
+											</div>
+										</div>										
+									</div>									
+									<div class="col-lg-3">
+										<div class="form-group ">
+											<label for="input_CPF">CPF*</label>
+											<input name="CPF" 
+											type="text" 
+											id="input_CPF" 
+											validate-cpf
+											ng-model="vm.customer.CPF"
+											class="form-control" 
+											mask="999.999.999-99"
+											clean="true"
+											required>
+											<div class="error-messages" ng-if="vm.interacted( customerForm.CPF )" ng-messages="customerForm.CPF.$error">
+												<div ng-message="required">Coloque o CPF!</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-2">
+										<div class="form-group ">
+											<label for="input_RG">RG*</label>
+											<input name="RG" 
+											type="text" 
+											ng-model="vm.customer.RG"											
+											ng-maxlength="15" 
+											ng-minlength="5" 
+											id="input_RG" 
+											class="form-control" 
+											required>
+											<div class="error-messages" ng-if="vm.interacted( customerForm.RG )" ng-messages="customerForm.RG.$error">
+												<div ng-message="required">Coloque o RG!</div>
+												<div ng-message="minlength">5</div>
+												<div ng-message="maxlength">15</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-2">
+										<div class="form-group ">
+											<label for="input_CEP">CEP*</label>
+											<input name="CEP" 
+											type="text"  
+											id="input_CEP" 
+											ng-model="vm.customer.cep"
+											class="form-control"
+											via-cep="cep"
+											ui-br-cep-mask 
+											required>
+											<div class="error-messages" ng-if="vm.interacted( customerForm.CEP )" ng-messages="customerForm.CEP.$error">
+												<div ng-message="required">Coloque o CEP!</div>											
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-8">
+										<div class="form-group ">
+											<label for="input_logradouro">Endereço*</label>
+											<input name="logradouro" 
+											type="text" 
+											ng-minlength="10" 
+											ng-maxlength="100"
+											ng-model="vm.customer.logradouro"											
+											id="input_logradouro" 
+											class="form-control"
+											via-cep="logradouro" 
+											required>
+											<div class="error-messages" ng-if="vm.interacted( customerForm.logradouro )" ng-messages="customerForm.logradouro.$error">
+												<div ng-message="required">Coloque o Endereço!</div>
+												<div ng-message="minlength">10</div>
+												<div ng-message="maxlength">100</div>									
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-3">
+										<div class="form-group ">
+											<label for="input_bairro">Bairro*</label>
+											<input name="bairro"
+											 type="text" 
+											 ng-minlength="5"
+											 ng-maxlength="100"											 								ng-model="vm.customer.bairro"
+											 id="input_bairro" 
+											 class="form-control" 
+											 via-cep="bairro"
+											 required>
+											<div class="error-messages" ng-if="vm.interacted( customerForm.bairro )" ng-messages="customerForm.bairro.$error">
+												<div ng-message="required">Coloque o Bairro!</div>
+												<div ng-message="minlength">5</div>
+												<div ng-message="maxlength">100</div>									
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-2">
+										<div class="form-group ">
+											<label for="input_numero">Nº*</label>
+											<input name="numero"
+											 type="text" 
+											 ng-maxlength="10"											 					ng-model="vm.customer.numero"
+											 id="input_numero" 
+											 class="form-control" 
+											 required>
+											<div class="error-messages" ng-if="vm.interacted( customerForm.numero )" ng-messages="customerForm.numero.$error">
+												<div ng-message="required">Coloque o Nº!</div>
+												<div ng-message="maxlength">10</div>									
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-3">
+										<div class="form-group ">
+											<label for="input_cidade">Cidade*</label>
+											<input name="cidade" 
+											type="text"
+											ng-minlength="5" 
+											ng-maxlength="60" 
+											ng-model="vm.customer.cidade"
+											id="input_cidade" 
+											class="form-control" 
+											via-cep="localidade"
+											required>
+											<div class="error-messages" ng-if="vm.interacted( customerForm.cidade )" ng-messages="customerForm.cidade.$error">
+												<div ng-message="required">Coloque a Cidade!</div>
+												<div ng-message="minlength">5</div>
+												<div ng-message="maxlength">100</div>									
+											</div>											
+										</div>
+									</div>
+									<div class="col-lg-2">
+										<div class="form-group ">
+											<label for="input_estado">Estado*</label>
+											<input name="estado"
+											 type="text"
+ 											 ng-disabled="true"
+ 											 ng-model="vm.customer.uf"	
+											 id="input_estado" 
+											 class="form-control" 
+											 via-cep="uf"
+											 required>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-5">
+										<div class="form-group ">
+											<label for="input_telefone">Telefone</label>
+											<input name="telefone" 
+											type="text" 
+											id="input_telefone"
+											ng-model="vm.customer.telefone" 
+											class="form-control"
+											ui-br-phone-number
+											required>
+											<div class="error-messages" ng-if="vm.interacted( customerForm.telefone )" ng-messages="customerForm.telefone.$error">
+												<div ng-message="required">Coloque o nº do Telefone!</div>								
+											</div>	
+										</div>
+									</div>
+									<div class="col-lg-5">
+										<div class="form-group ">
+											<label for="input_celular">Celular*</label>
+											<input name="celular" 
+											type="text" 
+											id="input_celular"
+											ng-model="vm.customer.celular" 
+											class="form-control"
+											ui-br-phone-number
+											required>
+											<div class="error-messages" ng-if="vm.interacted( customerForm.celular )" ng-messages="customerForm.celular.$error">
+												<div ng-message="required">Coloque o nº do Celular!</div>								
+											</div>	
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-lg-10">
+										<div class="form-group ">
+											<label for="input_email">Email</label>
+											<input name="email" 
+													type="email" 
+													ng-maxlength="60" 
+													id="input_email" 
+													ng-model="vm.customer.email"
+													class="form-control"
+													required>
+											<div class="error-messages" ng-if="vm.interacted( customerForm.email )" ng-messages="customerForm.email.$error">
+												<div ng-message="required">Coloque o email!</div>								
+												<div ng-message="maxlength">60</div>								
+												<div ng-message="email">Email inválido!</div>								
+											</div>
+										</div>
+									</div>
+								</div>								
+								<div class="row">
+									<div class="col-lg-6">
+										<div class="form-group">
+											<div class="checkbox">
+												<label>
+													<input id="chk_ativo" 
+													type="checkbox"
+													ng-model="vm.customer.ativo"
+													name="ativo">
+													Ativo</label>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="panel-footer">
+									 <button type="submit"
+									  		 ng-disabled="customerForm.$invalid"
+									         class="btn btn-success" >{{vm.btn.name}}
+								     </button>
+								     <button ui-sref='motoristas'									  		 
+									         class="btn btn-success" >Cancelar
+								     </button>
+
+									<div class="modal fade" id="modalExcluir" data-width="760">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+											<h3>Deseja Excluir?</h3>
+										</div>
+										<div class="modal-footer">
+											<button id="btnExcluir2" class="btn btn-success">Excluir</button>                    
+											<a data-dismiss="modal" id="A1" class="btn btn-default">Cancelar</a>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>    
+				</div>
+			</div>
+		
