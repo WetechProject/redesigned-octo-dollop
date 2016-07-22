@@ -30,7 +30,7 @@
            	 	    console.log( 'Data were successfully sent to the server! EDIT' );
                     console.log( JSON.stringify( vm.customer, null, 2 ));
                     Motoristas.updateMotorista( UID,id,vm.customer ).then(()=>{
-                      toastr.success('Motorista', 'Alterado com sucesso!');
+                      toastr.success('Alterado com sucesso!', 'Motorista');
                     	$state.go('motoristas');
                     },(error)=>{
                     	 ngNotify.set('Error: ' + error, {

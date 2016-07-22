@@ -5,9 +5,10 @@
         'LetsVAN.util',
         'LetsVAN.auth',
         'LetsVAN.login',
-        'LetsVAN.perfil',
         'LetsVAN.dashboard',
+        'LetsVAN.perfil',
         'LetsVAN.motoristas',
-        'LetsVAN.veiculos'
+        'LetsVAN.veiculos',
+        'LetsVAN.clientes'
     ]);
 })();

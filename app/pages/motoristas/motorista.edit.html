@@ -160,7 +160,7 @@
 											<input name="bairro"
 											 type="text" 
 											 ng-minlength="5"
-											 ng-maxlength="100"											 								ng-model="vm.customer.bairro"
+											 ng-maxlength="100"											 	ng-model="vm.customer.bairro"
 											 id="input_bairro" 
 											 class="form-control" 
 											 via-cep="bairro"
@@ -208,15 +208,23 @@
 									</div>
 									<div class="col-lg-2">
 										<div class="form-group ">
-											<label for="input_estado">Estado*</label>
-											<input name="estado"
+											<label for="input_uf">Estado*</label>
+											<input name="uf"
 											 type="text"
- 											 ng-disabled="true"
+											 ng-minlength="2" 
+											 ng-maxlength="100"
  											 ng-model="vm.customer.uf"	
-											 id="input_estado" 
+											 id="input_uf" 
 											 class="form-control" 
 											 via-cep="uf"
 											 required>
+										</div>
+										<div class="error-messages" 
+											ng-if="vm.interacted( customerForm.uf )" 
+											ng-messages="customerForm.uf.$error">
+												<div ng-message="required">Coloque o Estado!</div>
+												<div ng-message="minlength">2</div>
+												<div ng-message="maxlength">100</div>						
 										</div>
 									</div>
 								</div>

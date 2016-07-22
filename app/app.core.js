@@ -14,6 +14,9 @@
         'ngNotify',
         'ng-sweet-alert',
         'ngAnimate',
-        'toastr'
+        'toastr',
+        'vModal',
+        'angularMoment',
+        'idf.br-filters'
     ]);
 })();
