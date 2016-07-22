@@ -122,6 +122,43 @@
           }
         }
       })
+       .state('clientes', {
+        url: '/clientes',
+        controller: 'ClientesCtrl as vm',
+        templateUrl: 'app/pages/clientes/clientes.html',
+         resolve: {
+         "currentAuth": currentAuth,
+         "requireDisplayName": requireDisplayName
+        } 
+      })
+      .state('clientes.new', {
+        url: '/new',
+        parent:'clientes',
+        views: {
+          '@':{
+            controller: 'ClientesCtrl as vm',
+            templateUrl: 'app/pages/clientes/cliente.edit.html',
+            resolve: {
+                "requireDisplayName": requireDisplayName
+            } 
+          }
+        }        
+      })
+       .state('clientes.edit', {
+        url: '/{clienteID}',
+        parent:'clientes',
+        views: {
+          '@':{
+            controller: 'ClientesEditCtrl as vm',
+            templateUrl: 'app/pages/clientes/cliente.edit.html',
+            resolve: {
+              "currentAuth": currentAuth,
+              "requireDisplayName": requireDisplayName,
+              "perfilCliente": perfilCliente
+            }
+          }
+        }
+      })
 	};
 
     requireAutenticacao.$inject = ['$state', 'Auth'];
@@ -179,6 +216,18 @@
         return firebase.database()
         .ref()
         .child('users/'+ auth.uid +'/veiculos/' + $stateParams.veiculoID)
+        .once('value').then(function(snapshot) {
+              return snapshot.val();
+          });
+      });    
+    };
+
+    perfilCliente.$inject = ['$stateParams', 'Clientes', 'Auth'];
+    function perfilCliente($stateParams, Clientes, Auth) {
+      return Auth.$requireSignIn().then(function(auth) {
+        return firebase.database()
+        .ref()
+        .child('users/'+ auth.uid +'/clientes/' + $stateParams.clienteID)
         .once('value').then(function(snapshot) {
               return snapshot.val();
           });

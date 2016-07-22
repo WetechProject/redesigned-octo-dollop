@@ -23,7 +23,7 @@
             function atualizarPerfil() {
                 vm.profile.emailHash = md5.createHash(currentAuth.email);
                 vm.profile.$save().then((data)=> {
-                    toastr.success('Deletado com sucesso!!', 'Perfil');                    
+                    toastr.success('Atualizado com sucesso!!', 'Perfil');                    
                     $state.go('dashboard');
                 }, (error)=>{
                      ngNotify.set('Error: ' + error, {

@@ -1,0 +1,94 @@
+@if $v-modal-default-theme {
+  /* Theme: default
+   ***************************************/
+
+  .vModal--default {
+    transition: opacity $v-modal-fade-animation-duration;
+
+    v-dialog {
+      will-change: transform;
+      padding: $v-modal-spacing;
+      border-radius: $v-dialog-border-radius;
+      animation: vDialog-enter $v-dialog-enter-animation-duration;
+    }
+
+    v-close {
+      width: 40px;
+      height: 40px;
+
+      &::after,
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 12px;
+        height: 1px;
+        width: 16px;
+        transform-origin: 50% 50%;
+      }
+
+      &::before {
+        transform: rotate(-45deg);
+      }
+      &::after {
+        transform: rotate(45deg);
+      }
+
+      &::after,
+      &::before {
+        background-color: $v-close-color;
+        transition: background-color $v-close-hover-duration;
+      }
+
+      &:hover,
+      &:focus {
+        &::after,
+        &::before {
+          background-color: $v-close-hover-color;
+        }
+      }
+    }
+
+    &.ng-enter {
+      opacity: 0;
+    }
+    &.ng-enter-active {
+      opacity: 1;
+    }
+
+    &.ng-leave {
+      opacity: 1;
+    }
+    &.ng-leave-active {
+      opacity: 0;
+    }
+  }
+
+
+  /* Theme: default (animations) */
+  @keyframes vDialog-enter {
+    0% {
+      transform: translate3d(0, 30px, 0);
+    }
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+}
+
+@if $v-modal-default-theme and $v-modal-use-flexbox == false {
+  .vModal--default v-dialog[middle] {
+    animation: vDialog-enterAlt $v-dialog-enter-animation-duration;
+  }
+
+  @keyframes vDialog-enterAlt {
+    0% {
+      transform: translate3d(0, 30px, 0) translateY(-50%);
+    }
+    100% {
+      transform: translate3d(0, 0, 0) translateY(-50%);
+    }
+  }
+}
